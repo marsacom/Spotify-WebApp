@@ -7,15 +7,14 @@ const app = express();
 const PORT = 3000 || process.env.PORT;
 
 
+app.use(express.static('public'));
+
 // Setting Template Engine
 app.use(exLayout);
 app.set('layout', './layouts/main');
 app.set('view enginge', 'ejs');
 
-
-app.get('', (req, res) => {
-    res.send("Hello");
-});
+app.use('/', require('./server/routes/main'));
 
 app.listen(PORT, () => {
     console.log(`Server Listening On Port: ${PORT}`)
